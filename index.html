@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        let bodyTag = document.getElementsByTagName("body")
+        let promise = fetch("https://jsonplaceholder.typicode.com/photos")
+        promise.then(function(res){
+
+            let promiseRes = res.json()
+
+            promiseRes.then(function(set){
+                for (let i=0; i<set.length; i++){
+                    let pTag = document.createElement("p")
+                    pTag.innerText = set[i].title
+                    bodyTag[0].appendChild(pTag)
+                    event
+
+  
+                }
+            })
+        }) 
+
+    </script>
+    
+</body>
+</html>

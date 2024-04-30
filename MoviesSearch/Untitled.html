@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <input id="movies-input" type="text" placeholder="enter movie name here">
+        <button id="btn">Enter</button>
+
+    </div>
+    <div>
+        <p id="space">
+            
+        </p>
+    </div>
+
+
+
+    <script>
+       
+       let getInput = document.getElementById("movies-input");
+       let addBtn = document.getElementById("btn");
+       let blankSpace  = document.getElementById("space")
+       let pTag = document.createElement("p")
+
+       function getit(){
+        let getInputData = getInput.value;
+        const url = `http://www.omdbapi.com/?t=${getInputData}&apikey=4f462b7a`;
+        let promise = fetch(url);
+        promise.then(function(res){
+            const jasonPromise = res.json()
+            jasonPromise.then(function(res){
+                for (var key in res){
+                    var value = res[key];
+                    let pTag = document.createElement("p")
+                    pTag.innerHTML = "<strong>" + key + " : </strong>"+value; 
+                    blankSpace.appendChild(pTag)
+                }
+                
+            })
+
+        })
+        let innnerText = pTag.innerText
+        console.log(innnerText)
+        let keyValues = innnerText.split(":")
+        let key = keyValues[0].trim();
+        console.log(key)
+    
+
+
+
+       }
+      addBtn.addEventListener('click',getit)
+      blankSpace.style.borderRadius="1px solid";
+    </script>
+    
+</body>
+</html>

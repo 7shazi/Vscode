@@ -1,0 +1,35 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items:first center;
+    justify-content: center;
+
+}
+
+body{
+    border: 0px;
+    padding: 0px;
+    margin: 100px;
+
+}
+
+#div1{
+    /* display: none; */
+    background-color: rgb(191, 63, 63);
+    border: 0px;
+    margin: 0px;
+    padding: 10px;
+    /* position: absolute;
+    top: 0;
+    left: 0;     */
+}
+
+
+
+#container{
+    align-items: start;
+    background-color: rgb(213, 255, 142);
+    border: 70px;
+    padding: 20px;
+    margin: 40px;
+}

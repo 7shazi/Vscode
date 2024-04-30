@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        #proparent {
+            display: flex;
+
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+
+        }
+
+        #product-container {
+            display: flex;
+
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: start;
+
+        }
+        #moreBox{
+            display: flex;
+            border: 1px solid black;
+        }
+        #moreInput{
+            background-color: rgb(169, 169, 169);
+            width: 100px;
+            height: 40px;
+            padding:0px;
+            margin:20px 0px 0px 350px ;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="inputSearch" type="text" placeholder="">
+    <button onclick="searchProduct()">search</button>
+    
+    <button >product Design</button>
+    <button onmouseover="more()"><span class="material-symbols-outlined">
+        expand_more
+        </span>
+     </button>
+
+    <div class="container" id="product-container"></div>
+    <div id="moreInput">
+        <button onclick="sortProduct()">sort</button>
+    </div>
+
+
+
+    <script>
+        let searchInput = document.getElementById("product-container")
+        let prodListCont = document.getElementsByClassName("container")
+        let products = localStorage.getItem("localItems")
+        let productsArray = JSON.parse(products)
+        if (products) {
+            for (let i = 0; i < productsArray.length; i++) {
+                let productdiv = document.createElement("div")
+                let nameTag = document.createElement("p");
+                let imageTage = document.createElement("img");
+                let prizeTag = document.createElement("p");
+                let discriptionTag = document.createElement("p");
+                productdiv.setAttribute("id", "proparent");
+
+
+                nameTag.innerText = productsArray[i].input1;
+                prizeTag.innerText = productsArray[i].input2;
+                discriptionTag.innerText = productsArray[i].input4;
+                imageTage.setAttribute("src", productsArray[i].input3)
+                imageTage.setAttribute("width", "150")
+                imageTage.setAttribute("height", "150")
+
+
+                //    console.log(productsArray[i])
+
+
+                prodListCont[0].appendChild(productdiv)
+
+                productdiv.appendChild(nameTag)
+                productdiv.appendChild(imageTage)
+                productdiv.appendChild(prizeTag)
+                productdiv.appendChild(discriptionTag)
+
+
+            }
+        }
+        function searchProduct() {
+            let container = document.getElementById("product-container")
+            let searchInput = document.getElementById('inputSearch').value.toLowerCase();
+
+            let containerChildren = container.children;
+
+
+
+            for (let i = 0; i < containerChildren.length; i++) {
+                let productName = containerChildren[i].children[0].innerText;
+                if (productName.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0) {
+
+                    containerChildren[i].style.display = "block";
+
+                } else if (searchInput == "") {
+                    containerChildren[i].style.display = "block";
+                } else {
+
+                    containerChildren[i].style.display = "none";
+
+                }
+
+
+                console.log(productName)
+
+
+
+            }
+
+
+
+        }
+
+        function sortProduct() {
+            console.log("start")
+            let key = "products"
+            let container = document.getElementById("moreInput");
+            let product = JSON.parse(localStorage.getItem(key))
+            product.sort(function (a, b) {
+                return b.productPrize - a.productPrize
+
+
+
+
+
+            })
+            while (container.firstElementChild) {
+                container.removeChild(container.firstElementChild);
+
+
+            }
+            console.log(product)
+
+
+
+
+            if (product) {
+                for (let i = 0; i < product.length; i++) {
+                    let productdiv = document.createElement("div")
+                    let nameTag = document.createElement("p");
+                    let imageTage = document.createElement("img");
+                    let prizeTag = document.createElement("p");
+                    let discriptionTag = document.createElement("p");
+                    productdiv.setAttribute("id", "proparent");
+
+
+                    nameTag.innerText = product[i].productName;
+                    prizeTag.innerText = product[i].productPrize;
+                    discriptionTag.innerText = product[i].productDiscription;
+                    imageTage.setAttribute("src", productsArray[i].productImage)
+                    imageTage.setAttribute("width", "150")
+                    imageTage.setAttribute("height", "150")
+
+
+                    //    console.log(productsArray[i])
+
+
+                    prodListCont[0].appendChild(productdiv)
+
+                    productdiv.appendChild(nameTag)
+                    productdiv.appendChild(imageTage)
+                    productdiv.appendChild(prizeTag)
+                    productdiv.appendChild(discriptionTag)
+
+
+                }
+            }
+
+
+        }
+        let moreInData = document.getElementById("moreInput");
+        function more(){
+            let temp = document.getElementById("moreInput")
+
+            temp.style.display = "block";
+            
+
+
+
+        }
+        function nullVal(){
+            let temp = document.getElementById("moreInput")
+
+            temp.style.display = "none";
+
+
+        }
+       
+        nullVal();
+
+
+    </script>
+
+</body>
+
+</html>

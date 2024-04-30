@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input id="nameInput" type="text" placeholder="Text your name">
+        <button id="newButton">Click</button>
+    </div>
+    <div id="space">
+
+    </div>
+
+    <script>
+        // let diV  = document.getElementById("space")
+        let input = document.getElementById("nameInput")
+        let addButton = document.getElementById("newButton")
+
+        // let pTag = document.createElement("p")
+    
+        function showIt(){
+            inputData = input.value 
+            console.log(inputData)
+            // input.value = ""
+            // pTag.innerText = inputData
+            // diV.appendChild(pTag)
+        
+
+        }
+        addButton.addEventListener("click", function(arg){
+            showIt()
+            
+
+        })
+
+        
+    </script>
+</body>
+</html>

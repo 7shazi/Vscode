@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div id="primary-container">
+
+    <div id="ajju">
+        <h2>Don't select this paragraph</h2>
+    </div>
+
+    <div id="chipu">
+        <section>
+            <article>
+                <p>Not this one either</p>
+            </article>
+            <article>
+                <div>
+                    <a>Select this paragraph</a>
+                </div>
+            </article>
+        </section>
+        <section>
+            <p>Ignore this paragraph</p>
+        </section>
+    </div>
+
+    <button>Just a button</button>
+
+</div>
+
+    <script>
+        let raki = document.getElementById("primary-container")
+        let raki1 = raki.children[1]
+        let raki2 = raki1.children[0]
+        let raki3 = raki2.children[1]
+        let raki4 = raki3.children[0]
+        let raki5 = raki4.children[0]
+        
+        
+       
+
+        console.log(raki5)
+    </script>
+</body>
+</html>

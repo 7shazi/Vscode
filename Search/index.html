@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoping-Uploads</title>
+    <style>
+
+        html{
+            margin: 200px;
+            border: 200px;
+            padding: 20px;
+        }
+        .list{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        button{
+            margin: 10px;
+            border: 4px;
+            background-color: greenyellow;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="List">
+            <img src="Google.png" style="background-color: rgba(153, 153, 153, 0.621); " alt="">
+            <input id="name" type="text" placeholder="Brand">
+            <input id="price" type="text" placeholder="Price ">
+            <input id="image" type="text" placeholder="Image">
+            <input id="model" type="text" placeholder="Model">
+            <button onclick="search()">Submit</button>
+        </div>
+
+        <div>
+            <a href="backend.html" style="font-size: 24px; margin-left: 220px;">Show uploads</a>
+        </div>
+    </div>
+    <script>
+        function search(){
+          const name = document.getElementById('name').value;
+          const price = document.getElementById('price').value;
+          const image = document.getElementById('image').value;
+          const model = document.getElementById('model').value;    
+
+          const inputData = {
+            input1 : name,
+            input2 : price,
+            input3 : image,
+            input4 : model,
+            input5 : catagory
+          }
+
+            let product = JSON.parse(localStorage.getItem("localItems"))
+
+            if (product){
+                product.push(inputData)
+                localStorage.setItem("localItems",JSON.stringify(product))
+            }else{
+                let data = [inputData]
+                localStorage.setItem("localItems",JSON.stringify(data))
+                }   
+            
+        }
+     
+
+    </script>
+    
+</body>
+</html>

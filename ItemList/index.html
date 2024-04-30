@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <div class="main">
+            <input type="text" id="name" placeholder="Enter Name">
+            <input type="text" id="age" placeholder="Enter Age">
+            <button onclick="submit()">Submit</button>
+        </div>
+        <div>
+            <button onclick="options()" on="hide()">
+                <span class="material-symbols-outlined">more_vert</span>
+                <div id="options"></div>
+            </button>
+        </div>
+        <div id="page">
+            <h5 id="container"></h5>
+        </div>
+        
+    </div>
+
+    <script>
+
+
+        function hide(){
+            var options = document.getElementById("options")
+            options.style.display = "none";
+        }
+
+
+        function options(){
+            var options = document.getElementById("options")
+            let optionsDiv = document.createElement('div')
+            let buttonEdit = document.createElement('button')
+            let buttonDelete = document.createElement('button')
+            buttonEdit.textContent = "Edit"
+            buttonDelete.textContent = "Delete"
+            optionsDiv.appendChild(buttonEdit)
+            options.appendChild(optionsDiv)
+            options.style.display = "block";
+        }
+
+        function submit(){
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value
+            var output = document.getElementById("container");
+            var paragraph = document.createElement('p');
+
+            paragraph.innerHTML = "Name: " + name + "<br>Age: "  + age;
+            output.appendChild(paragraph)
+
+            document.getElementById('name').value = "";
+            document.getElementById("age").value = "";    
+        }
+
+
+
+    </script>
+
+    
+</body>
+</html>

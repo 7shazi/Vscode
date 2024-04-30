@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Key-Value Pair to Local Storage</title>
+    </head>
+    <body>
+        <h1>Add Key-Value Pair to Local Storage</h1>
+
+        <form id="addKeyValuePairForm">
+            <label for="keyInput">Key:</label>
+            <input type="text" id="keyInput" required>
+            <label for="valueInput">Value:</label>
+            <input type="text" id="valueInput" required>
+            <button type="submit">Add</button>
+        </form>
+
+        <script>
+            console.log("hello")
+            // Function to add a new key-value pair to local storage
+            function addKeyValuePairToLocalStorage(key, value) {
+                // Retrieve existing object from local storage or initialize an empty object
+                const storedDataString = localStorage.getItem('storedData');
+                const storedData = storedDataString ? JSON.parse(storedDataString) : {};
+
+                // Add the new key-value pair to the object
+                storedData[key] = value;
+
+                // Store the updated object back to local storage
+                localStorage.setItem('storedData', JSON.stringify(storedData));
+
+                // Display the updated object
+                displayStoredData();
+            }
+
+            // Function to display the stored object on the webpage
+            function displayStoredData() {
+                const storedDataString = localStorage.getItem('storedData');
+                const storedData = storedDataString ? JSON.parse(storedDataString) : {};
+
+                const displayContainer = document.createElement('div');
+                displayContainer.innerHTML = '<h2>Stored Data</h2>';
+
+                // Display each key-value pair in the stored object
+                Object.entries(storedData).forEach(([key, value]) => {
+                    const pairElement = document.createElement('p');
+                    pairElement.textContent = `${key}: ${value}`;
+                    displayContainer.appendChild(pairElement);
+                });
+
+                // Replace the existing display container with the updated one
+                const currentDisplayContainer = document.getElementById('displayContainer');
+                currentDisplayContainer.replaceWith(displayContainer);
+                displayContainer.id = 'displayContainer';
+            }
+
+            // Call displayStoredData function when the page loads
+            displayStoredData();
+
+            // Handle form submission to add a new key-value pair
+            document.getElementById('addKeyValuePairForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const keyInput = document.getElementById('keyInput').value.trim();
+                const valueInput = document.getElementById('valueInput').value.trim();
+
+                if (keyInput && valueInput) {
+                    addKeyValuePairToLocalStorage(keyInput, valueInput);
+                    document.getElementById('addKeyValuePairForm').reset();
+                } else {
+                    alert('Please enter both key and value.');
+                }
+            });
+        </script>
+    </body>
+</html>

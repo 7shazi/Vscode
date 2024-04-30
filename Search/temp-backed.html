@@ -1,0 +1,132 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #productList {
+            display: flex;
+            flex-direction: row;
+            margin: 40px;
+            padding: 0px;
+            border: 0px;
+        }
+
+        #productList img {
+            width: 250px;
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+
+        #productList p {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+
+            margin: 10px;
+            padding-left: 70px;
+            /* border: 440px 440px; */
+            /* background-color: rgb(217, 217, 217); */
+        }
+        #main{
+            /* display: flex; */
+            /* justify-content: center; */
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <div class="firstDiv">
+            <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg" alt="Flipkart-Logo">
+        </div >
+        
+        </div>
+
+        <div>
+            <input type="text" id="searchInput" placeholder="Search for items..">
+            <button type="submit" onclick="Search()">Search</button>
+        </div>
+
+        <div id="productList">
+
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+
+        const dataContainer = document.getElementById("productList");
+        const data = localStorage.getItem("localItems")
+        const parseData = JSON.parse(data)
+        if (data) {
+            for (let i = 0; i < parseData.length; i++) {
+                let sectionDiv = document.createElement("div");
+                sectionDiv.setAttribute = ("class","product")
+
+                let brandElement = document.createElement("p");
+                brandElement.textContent = `Brand : ${parseData[i].input1}`;
+
+                let brandPrice = document.createElement("p");
+                brandPrice.textContent = `Price : ${parseData[i].input2}`;
+
+                let brandImg = document.createElement("img")
+                brandImg.src = parseData[i].input3;
+                brandImg.alt = 'Product Image';
+
+                let brandModel = document.createElement("p")
+                brandModel.textContent = `Model : ${parseData[i].input4}`;
+
+
+                sectionDiv.appendChild(brandImg)
+                sectionDiv.appendChild(brandElement);
+                sectionDiv.appendChild(brandPrice)
+                sectionDiv.appendChild(brandModel)
+
+                dataContainer.append(sectionDiv)
+
+            }
+        }
+
+        function Search() {
+            let searchInput = document.getElementById("searchInput").value
+            let productList = document.getElementById("productList")
+            let products = document.getElementsByClassName("product")
+            let sectionChild = productList.children
+            // console.log(sectionChild)
+            for (let i = 0; i < sectionChild.length; i++) {
+                let brandInfo = sectionChild[i].children[1].innerText;
+                let brandName = brandInfo.split("Brand : ")[1].trim();
+
+                if (searchInput === "") {
+                    // If search input is empty, display the current sectionChild element
+                    sectionChild[i].style.display = "block";
+                } else {
+                    // Check if the brandInfo contains the searchInput (case-insensitive)
+                    if (brandInfo.toLowerCase().indexOf(searchInput) >= 0) {
+                        // If searchInput is found, display the current sectionChild element
+                        sectionChild[i].style.display = "block";
+                    } else {
+                        // If searchInput is not found, hide the current sectionChild element
+                        sectionChild[i].style.display = "none";
+                    }
+                }
+            }
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

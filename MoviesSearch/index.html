@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviesHub</title>
+</head>
+<body>
+    <div>
+        <input id="movies" type="text" placeholder="Enter Movie Name...">
+        <button id="newButton">click</button>
+    </div>
+    <div id="space">
+
+    </div>
+
+
+    <script>
+        let moviesInput = document.getElementById("movies")
+        let buttonInput = document.getElementById("newButton")
+        
+        
+
+        function runIt(){
+            userInput = moviesInput.value;    
+            console.log(userInput)
+            const url = `http://www.omdbapi.com/?t=${userInput}&apikey=4f462b7a`;
+
+        }
+        buttonInput.addEventListener("click",function(arg){
+            runIt()
+        })
+        
+
+    </script>
+    
+</body>
+</html>

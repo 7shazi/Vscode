@@ -1,0 +1,74 @@
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shoping</title>
+        <style>
+            body {
+                border: 0px;
+                margin: 0px;
+                padding: 0px;
+            }
+
+            #section {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            #section img {
+                width: 200px;
+                height: 200px;
+            }
+
+            #section h1,
+            h5 {
+                display: flex;
+                gap: 0;
+                margin: 0;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <div id="section">
+
+            </div>
+        </div>
+
+        <script>
+            function displayDataFromLocalStorage() {
+                const dataContainer = document.getElementById("section");
+                // dataContainer.innerText = "";
+                const saveData = localStorage.getItem("saveInput")
+                console.log(sa)
+
+
+                if (saveData) {
+                    const parseData = JSON.parse(saveData);
+
+                    Object.values(parseData).forEach(item => {
+                        const itemDiv = document.createElement("div");
+                        itemDiv.textContent = `Name: ${item}, Model: ${item.model}`
+                        dataContainer.appendChild(itemDiv)
+                    })
+                    console.log(saveData)
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+
+</html>
